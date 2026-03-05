@@ -1,109 +1,308 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBloggy — Dynamic Tool Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TechBloggy | Online Tools & Tech Guides</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .active-cat { background: #000 !important; color: #fff !important; opacity: 1 !important; }
-        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #fcfcfd;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navbar --- */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--primary); color: white; border: none; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-outline { border: 1px solid var(--border); background: transparent; }
+        .btn-outline:hover { background: var(--border); }
+
+        /* --- Sections Common --- */
+        section { padding: 60px 0; }
+        h2 { font-size: 2rem; margin-bottom: 40px; text-align: center; }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .icon { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .card h3 { margin-bottom: 10px; }
+        .card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* --- Footer --- */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo { color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; display: block; }
+        .footer-links h4 { color: white; margin-bottom: 15px; }
+        .footer-links li { margin-bottom: 8px; }
+        .copyright { text-align: center; border-top: 1px solid #374151; padding-top: 30px; font-size: 0.8rem; }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
     </style>
 </head>
-<body class="bg-[#fafafa] text-black">
+<body>
 
-    <nav class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="text-xl font-bold tracking-tighter uppercase">Tech<span class="font-light">Bloggy</span></div>
-            <div class="flex items-center gap-6">
-                <div class="relative hidden md:block">
-                    <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search tools..." class="bg-gray-100 border-none rounded-full px-4 py-1.5 text-xs w-48 focus:w-64 transition-all outline-none">
-                </div>
-                <button class="bg-black text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">Login</button>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">TechBloggy</a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Categories</a></li>
+                </ul>
+                <button class="btn btn-primary" style="padding: 8px 16px;">Sign Up</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Useful Online <br>Tools & Tech Guides</h1>
+            <p>Your all-in-one destination for productivity tools and deep dives into the latest technology trends.</p>
+            <div class="search-container">
+                <input type="text" placeholder="Search for 'JSON Parser' or 'Next.js Guide'...">
+                <button class="btn btn-primary">Search</button>
+            </div>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="#tools" class="btn btn-primary">Explore Tools</a>
+                <a href="#blog" class="btn btn-outline">Read Blog</a>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <header class="mb-12">
-            <h1 class="text-5xl font-extrabold tracking-tighter uppercase mb-4">The Digital <br> Toolbox.</h1>
-            <p class="text-xs opacity-40 uppercase tracking-widest">Filter by category or search below</p>
-        </header>
-
-        <div class="flex flex-wrap gap-3 mb-12" id="categoryContainer">
-            <button onclick="filterByCategory('all')" class="cat-btn active-cat px-5 py-2 rounded-full border border-black/5 text-[10px] font-bold uppercase tracking-widest transition-all">All Tools</button>
-            <button onclick="filterByCategory('Finance')" class="cat-btn px-5 py-2 rounded-full border border-black/5 text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">Finance</button>
-            <button onclick="filterByCategory('AI')" class="cat-btn px-5 py-2 rounded-full border border-black/5 text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">AI Tools</button>
-            <button onclick="filterByCategory('Dev')" class="cat-btn px-5 py-2 rounded-full border border-black/5 text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">Developer</button>
-            <button onclick="filterByCategory('Social')" class="cat-btn px-5 py-2 rounded-full border border-black/5 text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">Social</button>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="toolsGrid">
-            </div>
-
-        <section class="mt-24 pt-16 border-t border-black/5">
-            <h2 class="text-xs font-black uppercase tracking-[0.4em] mb-12 opacity-30">Latest from Blog</h2>
-            <div class="grid md:grid-cols-2 gap-12" id="blogContainer">
+    <section id="categories">
+        <div class="container">
+            <h2>Explore by Category</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="icon">🤖</span>
+                    <h3>AI Tools</h3>
+                    <p>Leverage the power of artificial intelligence to automate your workflow.</p>
                 </div>
-        </section>
-    </main>
+                <div class="card">
+                    <span class="icon">🖼️</span>
+                    <h3>Image Tools</h3>
+                    <p>Compress, convert, and edit images right in your browser.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🚀</span>
+                    <h3>SEO Tools</h3>
+                    <p>Optimize your website's visibility with our free analysis tools.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">💻</span>
+                    <h3>Developer Tools</h3>
+                    <p>Formatting, minifying, and debugging tools for modern coders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // 1. Tools Data (Database substitute)
-        const toolsData = [
-            { name: "Bond Pricing Pro", desc: "Advanced YTM and valuation model.", cat: "Finance", link: "bond-calc.html", icon: "fa-vault" },
-            { name: "SIP Wealth Hub", desc: "Compounding with step-up & inflation.", cat: "Finance", link: "sip-calc.html", icon: "fa-chart-line" },
-            { name: "AI Content Writer", desc: "Generate SEO articles in seconds.", cat: "AI", link: "#", icon: "fa-robot" },
-            { name: "JSON Formatter", desc: "Clean and validate your code.", cat: "Dev", link: "#", icon: "fa-code" },
-            { name: "Meta Tag Gen", desc: "Boost your social media SEO.", cat: "Social", link: "#", icon: "fa-tags" },
-            { name: "AI Image Studio", desc: "Upscale images with neural tech.", cat: "AI", link: "#", icon: "fa-image" }
-        ];
+    <section id="tools" style="background-color: #fff;">
+        <div class="container">
+            <h2>Featured Tools</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>JSON Formatter</h3>
+                    <p>Clean up messy JSON code instantly for better readability.</p>
+                    <button class="btn btn-outline">Open Tool</button>
+                </div>
+                <div class="card">
+                    <h3>SVG to PNG</h3>
+                    <p>Convert vector graphics to high-quality raster images easily.</p>
+                    <button class="btn btn-outline">Open Tool</button>
+                </div>
+                <div class="card">
+                    <h3>Keyword Density</h3>
+                    <p>Check how often keywords appear in your content for better SEO.</p>
+                    <button class="btn btn-outline">Open Tool</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // 2. Render Tools Function
-        function renderTools(data) {
-            const grid = document.getElementById('toolsGrid');
-            grid.innerHTML = data.map(tool => `
-                <a href="${tool.link}" class="tool-card group bg-white border border-black/5 p-6 rounded-2xl hover:shadow-xl flex flex-col justify-between h-48" data-category="${tool.cat}">
-                    <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                            <i class="fa-solid ${tool.icon}"></i>
-                        </div>
-                        <span class="text-[8px] font-bold uppercase opacity-30 tracking-widest">${tool.cat}</span>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold uppercase tracking-tighter leading-none mb-2">${tool.name}</h3>
-                        <p class="text-[10px] opacity-50 leading-tight">${tool.desc}</p>
-                    </div>
-                </a>
-            `).join('');
-        }
+    <section id="blog">
+        <div class="container">
+            <h2>Latest From The Blog</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200" alt="post" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>The Rise of AI Agents</h3>
+                    <p>How autonomous AI is changing the way we interact with software in 2026.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 600;">Read More →</a>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200" alt="post" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>Mastering CSS Grid</h3>
+                    <p>A comprehensive guide to building complex layouts with minimal code.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 600;">Read More →</a>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200" alt="post" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>Security Checklist</h3>
+                    <p>10 essential steps to keep your web applications safe from vulnerabilities.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 600;">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // 3. Search Logic
-        function filterTools() {
-            const query = document.getElementById('toolSearch').value.toLowerCase();
-            const filtered = toolsData.filter(t => t.name.toLowerCase().includes(query) || t.cat.toLowerCase().includes(query));
-            renderTools(filtered);
-        }
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-logo">TechBloggy</span>
+                    <p style="max-width: 400px;">TechBloggy provides high-quality online tools and educational content to help developers and creators succeed in the digital world.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Advertise</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 TechBloggy. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
-        // 4. Category Filter Logic
-        function filterByCategory(category) {
-            // Update UI (Buttons)
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active-cat'));
-            event.target.classList.add('active-cat');
-
-            if(category === 'all') {
-                renderTools(toolsData);
-            } else {
-                const filtered = toolsData.filter(t => t.cat === category);
-                renderTools(filtered);
-            }
-        }
-
-        // Initial Load
-        renderTools(toolsData);
-    </script>
 </body>
 </html>
