@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartToolbox | All-in-One Utility</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">SmartToolbox</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Finance</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Dev Tools</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Unit Converter</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Contact</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-blue-600 py-16 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Har Calculation Ka Solution</h1>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto">Finance se lekar Development tak, saare zaroori tools ek hi jagah par.</p>
+        <div class="mt-8 max-w-xl mx-auto relative">
+            <input type="text" placeholder="Search for a tool (e.g. Bond Calculator)..." class="w-full px-6 py-4 rounded-full shadow-xl focus:outline-none text-gray-800">
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center">
+            <i class="fas fa-th-large mr-3 text-blue-600"></i> Popular Tools
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Bond Price & YTM</h3>
+                <p class="text-gray-500 text-sm mb-4">Calculate Bond Price, Yield to Maturity (YTM), and Convexity with precision.</p>
+                <a href="bond-calc.html" class="inline-flex items-center text-blue-600 font-bold hover:text-blue-800">
+                    Open Tool <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">SIP Calculator</h3>
+                <p class="text-gray-500 text-sm mb-4">Plan your future wealth with step-up SIP and mutual fund returns.</p>
+                <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">Coming Soon</span>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">JSON Formatter</h3>
+                <p class="text-gray-500 text-sm mb-4">Clean, beautify and validate your JSON data instantly.</p>
+                <span class="text-xs font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">Coming Soon</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2026 SmartToolbox. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
