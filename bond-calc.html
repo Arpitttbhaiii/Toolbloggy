@@ -2,126 +2,139 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bond Valuation Tool — TechBloggy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bond Pricing Pro — TechBloggy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .input-field { 
-            background: transparent; 
-            border-bottom: 2px solid rgba(0,0,0,0.1); 
-            transition: all 0.3s;
-        }
-        .input-field:focus { 
-            border-bottom-color: #000; 
-            outline: none;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .input-group { border-bottom: 2px solid #f0f0f0; transition: 0.3s; }
+        .input-group:focus-within { border-bottom-color: #000; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
-<body class="bg-[#fafafa] text-black">
+<body class="bg-[#fafafa] text-black antialiased">
 
     <nav class="border-b border-black/5 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="text-xl font-bold tracking-tighter uppercase">Tech<span class="font-light">Bloggy</span></a>
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">← Back to Tools</a>
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest opacity-60">← Close</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-20">
-        <div class="mb-16">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 mb-2 block italic">Finance & Analytics</span>
-            <h1 class="text-5xl font-extrabold tracking-tighter uppercase mb-4">Bond Pricing <br> Model.</h1>
-            <p class="text-sm opacity-50 max-w-md leading-relaxed">Professional tool to calculate the present value of a bond based on coupon payments and market yield.</p>
-        </div>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid lg:grid-cols-2 gap-12">
+            
+            <div class="space-y-12">
+                <div>
+                    <h1 class="text-4xl font-extrabold tracking-tighter uppercase mb-2 leading-none">Bond Price <br> Analysis.</h1>
+                    <p class="text-[10px] font-bold opacity-30 uppercase tracking-[0.3em]">Institutional Valuation Tool v4.0</p>
+                </div>
 
-        <div class="grid md:grid-cols-2 gap-16">
-            <div class="space-y-8">
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Face Value (₹)</label>
-                    <input type="number" id="faceValue" value="1000" class="input-field w-full py-3 text-2xl font-bold">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="input-group pb-2">
+                        <label class="block text-[10px] font-black uppercase tracking-widest opacity-40 mb-2">Face Value (₹)</label>
+                        <input type="number" id="faceValue" value="1000" class="bg-transparent text-2xl font-bold outline-none w-full" oninput="calculateBond()">
+                    </div>
+                    <div class="input-group pb-2">
+                        <label class="block text-[10px] font-black uppercase tracking-widest opacity-40 mb-2">Coupon Rate (% p.a.)</label>
+                        <input type="number" id="couponRate" value="8" class="bg-transparent text-2xl font-bold outline-none w-full" oninput="calculateBond()">
+                    </div>
+                    <div class="input-group pb-2">
+                        <label class="block text-[10px] font-black uppercase tracking-widest opacity-40 mb-2">Years to Maturity</label>
+                        <input type="number" id="years" value="5" class="bg-transparent text-2xl font-bold outline-none w-full" oninput="calculateBond()">
+                    </div>
+                    <div class="input-group pb-2">
+                        <label class="block text-[10px] font-black uppercase tracking-widest opacity-40 mb-2">Market Yield / YTM (%)</label>
+                        <input type="number" id="ytm" value="7" class="bg-transparent text-2xl font-bold outline-none w-full" oninput="calculateBond()">
+                    </div>
                 </div>
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Coupon Rate (% p.a.)</label>
-                    <input type="number" id="couponRate" value="8" class="input-field w-full py-3 text-2xl font-bold">
+
+                <div class="p-6 bg-black text-white rounded-[32px]">
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-4">Quick Insight</h3>
+                    <p class="text-xs leading-relaxed opacity-80" id="insightText">If the market yield is lower than the coupon rate, your bond is currently more valuable than its face value.</p>
                 </div>
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Years to Maturity</label>
-                    <input type="number" id="years" value="5" class="input-field w-full py-3 text-2xl font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Market Yield / YTM (%)</label>
-                    <input type="number" id="ytm" value="7" class="input-field w-full py-3 text-2xl font-bold">
-                </div>
-                <button onclick="calculateBond()" class="w-full bg-black text-white py-4 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-gray-800 transition-all">Calculate Price</button>
             </div>
 
-            <div id="resultContainer" class="border-l border-black/5 pl-12 flex flex-col justify-center">
-                <div class="mb-8">
-                    <span class="text-[10px] font-bold uppercase tracking-widest opacity-40">Intrinsic Value</span>
-                    <div id="bondPrice" class="text-7xl font-black tracking-tighter">₹0.00</div>
+            <div class="bg-white border border-black/5 p-8 md:p-12 rounded-[40px] shadow-sm flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest opacity-30">Fair Market Value</span>
+                    <div id="bondPrice" class="text-6xl md:text-7xl font-black tracking-tighter mt-2">₹0.00</div>
+                    <div id="bondStatus" class="inline-block mt-4 px-3 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">--</div>
                 </div>
-                <div class="space-y-4">
-                    <div class="flex justify-between border-b border-black/5 pb-2 text-sm">
-                        <span class="opacity-50">Annual Interest</span>
+
+                <div class="mt-16 space-y-4">
+                    <div class="flex justify-between items-center py-3 border-b border-black/5">
+                        <span class="text-xs font-bold opacity-40 uppercase">Annual Coupon</span>
                         <span id="annualInterest" class="font-bold">₹0.00</span>
                     </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2 text-sm">
-                        <span class="opacity-50">Market Status</span>
-                        <span id="bondStatus" class="font-bold uppercase text-[10px] tracking-widest">--</span>
+                    <div class="flex justify-between items-center py-3 border-b border-black/5">
+                        <span class="text-xs font-bold opacity-40 uppercase">Total Interest Flow</span>
+                        <span id="totalInterest" class="font-bold">₹0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <span class="text-xs font-bold opacity-40 uppercase">Premium / Discount</span>
+                        <span id="diffAmt" class="font-bold">₹0.00</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section class="mt-32 pt-16 border-t border-black/5">
-            <h2 class="text-xs font-black uppercase tracking-[0.3em] mb-8 opacity-30">How it works</h2>
-            <div class="grid md:grid-cols-2 gap-12 text-sm leading-relaxed opacity-60">
-                <p>Bond pricing calculation uses the <strong>Present Value (PV)</strong> formula. It discounts each future coupon payment and the final face value back to today's terms using the Yield to Maturity (YTM) as the discount rate.</p>
-                <p>If the YTM is higher than the Coupon Rate, the bond sells at a <strong>Discount</strong>. If the YTM is lower, it sells at a <strong>Premium</strong>. This tool assumes annual coupon payments.</p>
+        <section class="mt-24 pt-16 border-t border-black/5">
+            <div class="max-w-3xl">
+                <h2 class="text-xs font-black uppercase tracking-[0.4em] mb-6 opacity-30">Mathematical Logic</h2>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    The bond price is calculated by discounting the expected cash flows (interest payments and principal) to their present value using the Market Yield (YTM).
+                </p>
+                
+                <div class="bg-gray-100 dark:bg-black p-6 rounded-2xl overflow-x-auto">
+                    <code class="text-xs font-mono whitespace-nowrap">Price = Σ [C / (1+r)^t] + [F / (1+r)^n]</code>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 text-center opacity-20 text-[10px] font-bold tracking-[0.5em] uppercase">
-        © 2026 TechBloggy Hub
+    <footer class="py-12 border-t border-black/5 text-center text-[9px] font-bold opacity-20 uppercase tracking-[0.5em]">
+        TechBloggy Utility Ecosystem © 2026
     </footer>
 
     <script>
         function calculateBond() {
-            const F = parseFloat(document.getElementById('faceValue').value);
-            const C_rate = parseFloat(document.getElementById('couponRate').value) / 100;
-            const n = parseFloat(document.getElementById('years').value);
-            const r = parseFloat(document.getElementById('ytm').value) / 100;
+            const F = parseFloat(document.getElementById('faceValue').value) || 0;
+            const C_rate = parseFloat(document.getElementById('couponRate').value) / 100 || 0;
+            const n = parseFloat(document.getElementById('years').value) || 0;
+            const r = parseFloat(document.getElementById('ytm').value) / 100 || 0;
 
             const annualC = F * C_rate;
-            
-            // Bond Pricing Formula: PV = [C * (1 - (1+r)^-n) / r] + [F / (1+r)^n]
             let price = 0;
+
             if (r === 0) {
                 price = (annualC * n) + F;
             } else {
+                // Annuity formula for coupons + PV for Face Value
                 price = (annualC * (1 - Math.pow(1 + r, -n)) / r) + (F / Math.pow(1 + r, n));
             }
 
-            // Update UI
+            const status = document.getElementById('bondStatus');
+            const insight = document.getElementById('insightText');
+
+            if (price > F) {
+                status.innerText = "Trading at Premium";
+                insight.innerText = "Investors are willing to pay more for your bond because its coupon rate is better than current market yields.";
+            } else if (price < F) {
+                status.innerText = "Trading at Discount";
+                insight.innerText = "Your bond's coupon rate is lower than the market yield, so it sells for less than its face value.";
+            } else {
+                status.innerText = "Trading at Par";
+                insight.innerText = "The bond's coupon matches the market yield perfectly.";
+            }
+
             document.getElementById('bondPrice').innerText = "₹" + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('annualInterest').innerText = "₹" + annualC.toLocaleString();
-            
-            const status = document.getElementById('bondStatus');
-            if (price > F) {
-                status.innerText = "Premium Bond";
-                status.style.color = "black";
-            } else if (price < F) {
-                status.innerText = "Discount Bond";
-                status.style.color = "gray";
-            } else {
-                status.innerText = "At Par";
-                status.style.color = "black";
-            }
+            document.getElementById('totalInterest').innerText = "₹" + (annualC * n).toLocaleString();
+            document.getElementById('diffAmt').innerText = "₹" + Math.abs(price - F).toLocaleString(undefined, {minimumFractionDigits: 2});
         }
-        // Run once on load
         calculateBond();
     </script>
 </body>
