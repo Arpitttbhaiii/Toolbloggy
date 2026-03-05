@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bond Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+        <a href="index.html" class="text-blue-500 mb-4 inline-block">← Back</a>
+        <h2 class="text-2xl font-bold mb-6">Bond Calculator (Price & YTM)</h2>
+        <div class="space-y-4">
+            <input type="number" id="fv" placeholder="Face Value" value="1000" class="w-full p-2 border rounded">
+            <input type="number" id="cr" placeholder="Coupon Rate (%)" value="8" class="w-full p-2 border rounded">
+            <input type="number" id="years" placeholder="Years" value="5" class="w-full p-2 border rounded">
+            <input type="number" id="yield" placeholder="Market Yield (%)" value="6" class="w-full p-2 border rounded">
+            <button onclick="calculate()" class="w-full bg-blue-600 text-white p-3 rounded-lg font-bold">Calculate</button>
+        </div>
+        <div id="result" class="mt-6 p-4 bg-blue-50 rounded-lg hidden">
+            <p>Bond Price: <span id="resPrice" class="font-bold"></span></p>
+            <p>Duration: <span id="resDur" class="font-bold"></span></p>
+        </div>
+    </div>
+    <script>
+        function calculate() {
+            const fv = parseFloat(document.getElementById('fv').value);
+            const cr = parseFloat(document.getElementById('cr').value)/100;
+            const y = parseFloat(document.getElementById('yield').value)/100;
+            const n = parseFloat(document.getElementById('years').value);
+            const c = fv * cr;
+            let price = 0;
+            for(let t=1; t<=n; t++) price += c / Math.pow(1+y, t);
+            price += fv / Math.pow(1+y, n);
+            document.getElementById('resPrice').innerText = "$" + price.toFixed(2);
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
