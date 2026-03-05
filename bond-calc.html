@@ -3,38 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bond Calculator</title>
+    <title>Bond Valuation Tool — TechBloggy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-md">
-        <a href="index.html" class="text-blue-500 mb-4 inline-block">← Back</a>
-        <h2 class="text-2xl font-bold mb-6">Bond Calculator (Price & YTM)</h2>
-        <div class="space-y-4">
-            <input type="number" id="fv" placeholder="Face Value" value="1000" class="w-full p-2 border rounded">
-            <input type="number" id="cr" placeholder="Coupon Rate (%)" value="8" class="w-full p-2 border rounded">
-            <input type="number" id="years" placeholder="Years" value="5" class="w-full p-2 border rounded">
-            <input type="number" id="yield" placeholder="Market Yield (%)" value="6" class="w-full p-2 border rounded">
-            <button onclick="calculate()" class="w-full bg-blue-600 text-white p-3 rounded-lg font-bold">Calculate</button>
-        </div>
-        <div id="result" class="mt-6 p-4 bg-blue-50 rounded-lg hidden">
-            <p>Bond Price: <span id="resPrice" class="font-bold"></span></p>
-            <p>Duration: <span id="resDur" class="font-bold"></span></p>
-        </div>
-    </div>
-    <script>
-        function calculate() {
-            const fv = parseFloat(document.getElementById('fv').value);
-            const cr = parseFloat(document.getElementById('cr').value)/100;
-            const y = parseFloat(document.getElementById('yield').value)/100;
-            const n = parseFloat(document.getElementById('years').value);
-            const c = fv * cr;
-            let price = 0;
-            for(let t=1; t<=n; t++) price += c / Math.pow(1+y, t);
-            price += fv / Math.pow(1+y, n);
-            document.getElementById('resPrice').innerText = "$" + price.toFixed(2);
-            document.getElementById('result').classList.remove('hidden');
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .input-field { 
+            background: transparent; 
+            border-bottom: 2px solid rgba(0,0,0,0.1); 
+            transition: all 0.3s;
         }
+        .input-field:focus { 
+            border-bottom-color: #000; 
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-[#fafafa] text-black">
+
+    <nav class="border-b border-black/5 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold tracking-tighter uppercase">Tech<span class="font-light">Bloggy</span></a>
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">← Back to Tools</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-20">
+        <div class="mb-16">
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 mb-2 block italic">Finance & Analytics</span>
+            <h1 class="text-5xl font-extrabold tracking-tighter uppercase mb-4">Bond Pricing <br> Model.</h1>
+            <p class="text-sm opacity-50 max-w-md leading-relaxed">Professional tool to calculate the present value of a bond based on coupon payments and market yield.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Face Value (₹)</label>
+                    <input type="number" id="faceValue" value="1000" class="input-field w-full py-3 text-2xl font-bold">
+                </div>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Coupon Rate (% p.a.)</label>
+                    <input type="number" id="couponRate" value="8" class="input-field w-full py-3 text-2xl font-bold">
+                </div>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Years to Maturity</label>
+                    <input type="number" id="years" value="5" class="input-field w-full py-3 text-2xl font-bold">
+                </div>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Market Yield / YTM (%)</label>
+                    <input type="number" id="ytm" value="7" class="input-field w-full py-3 text-2xl font-bold">
+                </div>
+                <button onclick="calculateBond()" class="w-full bg-black text-white py-4 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-gray-800 transition-all">Calculate Price</button>
+            </div>
+
+            <div id="resultContainer" class="border-l border-black/5 pl-12 flex flex-col justify-center">
+                <div class="mb-8">
+                    <span class="text-[10px] font-bold uppercase tracking-widest opacity-40">Intrinsic Value</span>
+                    <div id="bondPrice" class="text-7xl font-black tracking-tighter">₹0.00</div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b border-black/5 pb-2 text-sm">
+                        <span class="opacity-50">Annual Interest</span>
+                        <span id="annualInterest" class="font-bold">₹0.00</span>
+                    </div>
+                    <div class="flex justify-between border-b border-black/5 pb-2 text-sm">
+                        <span class="opacity-50">Market Status</span>
+                        <span id="bondStatus" class="font-bold uppercase text-[10px] tracking-widest">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-32 pt-16 border-t border-black/5">
+            <h2 class="text-xs font-black uppercase tracking-[0.3em] mb-8 opacity-30">How it works</h2>
+            <div class="grid md:grid-cols-2 gap-12 text-sm leading-relaxed opacity-60">
+                <p>Bond pricing calculation uses the <strong>Present Value (PV)</strong> formula. It discounts each future coupon payment and the final face value back to today's terms using the Yield to Maturity (YTM) as the discount rate.</p>
+                <p>If the YTM is higher than the Coupon Rate, the bond sells at a <strong>Discount</strong>. If the YTM is lower, it sells at a <strong>Premium</strong>. This tool assumes annual coupon payments.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center opacity-20 text-[10px] font-bold tracking-[0.5em] uppercase">
+        © 2026 TechBloggy Hub
+    </footer>
+
+    <script>
+        function calculateBond() {
+            const F = parseFloat(document.getElementById('faceValue').value);
+            const C_rate = parseFloat(document.getElementById('couponRate').value) / 100;
+            const n = parseFloat(document.getElementById('years').value);
+            const r = parseFloat(document.getElementById('ytm').value) / 100;
+
+            const annualC = F * C_rate;
+            
+            // Bond Pricing Formula: PV = [C * (1 - (1+r)^-n) / r] + [F / (1+r)^n]
+            let price = 0;
+            if (r === 0) {
+                price = (annualC * n) + F;
+            } else {
+                price = (annualC * (1 - Math.pow(1 + r, -n)) / r) + (F / Math.pow(1 + r, n));
+            }
+
+            // Update UI
+            document.getElementById('bondPrice').innerText = "₹" + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('annualInterest').innerText = "₹" + annualC.toLocaleString();
+            
+            const status = document.getElementById('bondStatus');
+            if (price > F) {
+                status.innerText = "Premium Bond";
+                status.style.color = "black";
+            } else if (price < F) {
+                status.innerText = "Discount Bond";
+                status.style.color = "gray";
+            } else {
+                status.innerText = "At Par";
+                status.style.color = "black";
+            }
+        }
+        // Run once on load
+        calculateBond();
     </script>
 </body>
 </html>
