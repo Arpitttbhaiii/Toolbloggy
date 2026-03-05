@@ -3,89 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOOLBLOGGY | Minimalist Hub</title>
+    <title>TechBloggy | Advanced Tool Ecosystem</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#000000',
-                    }
-                }
-            }
+            theme: { extend: { colors: { gray: { 950: '#050505' } } } }
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .premium-card:hover { transform: translateY(-8px); border-color: currentColor; }
     </style>
 </head>
-<body class="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+<body class="bg-white dark:bg-gray-950 text-black dark:text-white transition-colors duration-500">
 
-    <nav class="border-b border-black/10 dark:border-white/10 sticky top-0 bg-white/80 dark:bg-black/80 backdrop-blur-md z-50">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-xl font-black tracking-tighter uppercase">
-                Tool<span class="bg-black text-white dark:bg-white dark:text-black px-1">Bloggy</span>
+    <nav class="border-b border-black/5 dark:border-white/10 sticky top-0 bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-extrabold tracking-tighter uppercase">
+                Tech<span class="bg-black text-white dark:bg-white dark:text-black px-2 ml-1">Bloggy</span>
             </div>
             
-            <div class="flex items-center gap-6">
-                <button class="text-sm font-bold uppercase tracking-widest hidden md:block">Menu</button>
-                
-                <button onclick="document.documentElement.classList.toggle('dark')" class="w-10 h-10 flex items-center justify-center border border-black dark:border-white rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
-                    <i class="fas fa-circle text-[10px]"></i>
+            <div class="flex items-center gap-8">
+                <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] opacity-50">
+                    <a href="#finance" class="hover:opacity-100 transition-opacity">Finance</a>
+                    <a href="#social" class="hover:opacity-100 transition-opacity">Social</a>
+                    <a href="#dev" class="hover:opacity-100 transition-opacity">Dev Hub</a>
+                </nav>
+                <button onclick="document.documentElement.classList.toggle('dark')" class="w-10 h-10 border border-black/10 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <header class="py-24 px-6 max-w-6xl mx-auto">
-        <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase mb-6">
-            Pure <br> Utility.
+    <header class="py-28 px-6 max-w-7xl mx-auto border-b border-black/5 dark:border-white/5 text-center md:text-left">
+        <span class="text-[10px] font-black uppercase tracking-[0.5em] opacity-30 mb-6 block italic">Next-Gen Utility Platform</span>
+        <h1 class="text-6xl md:text-9xl font-extrabold leading-[0.85] tracking-tighter uppercase mb-8">
+            Digital <br> Precision.
         </h1>
-        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-md border-l-4 border-black dark:border-white pl-4">
-            Advanced financial and development tools. No distractions, just performance.
-        </p>
+        <p class="text-xl opacity-40 max-w-xl leading-relaxed">TechBloggy brings enterprise-grade financial modeling and social media optimization tools to your browser. Built for speed, designed for clarity.</p>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-32">
-        <div class="mb-20">
-            <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10 opacity-50 italic">/ Finance Tools</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        
+        <section id="finance" class="mb-32">
+            <div class="flex items-baseline gap-4 mb-16">
+                <h2 class="text-4xl font-black uppercase tracking-tighter italic">/ 01 Finance Tools</h2>
+                <span class="text-xs opacity-30 uppercase font-bold tracking-widest">Calculations & Modeling</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <a href="bond-calc.html" class="premium-card group border-l-4 border-black dark:border-white p-10 bg-gray-50 dark:bg-white/5 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
+                    <div class="mb-10 flex justify-between items-center">
+                        <i class="fas fa-landmark text-3xl opacity-80"></i>
+                        <span class="text-xs font-mono opacity-50">PRO TOOL</span>
+                    </div>
+                    <h3 class="text-4xl font-bold uppercase tracking-tighter mb-4">Bond Calculator</h3>
+                    <p class="opacity-60 mb-10 text-sm leading-relaxed">Analyze fixed-income securities with precision. Includes YTM, Convexity, and Duration metrics with full custom parameter input support.</p>
+                    <div class="flex gap-4">
+                        <span class="text-[10px] border border-current px-2 py-1 font-bold italic">INSTITUTIONAL GRADE</span>
+                        <span class="text-[10px] border border-current px-2 py-1 font-bold italic">v4.0</span>
+                    </div>
+                </a>
+
+                <a href="sip-calc.html" class="premium-card group border-l-4 border-black dark:border-white p-10 bg-gray-50 dark:bg-white/5 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
+                    <div class="mb-10 flex justify-between items-center">
+                        <i class="fas fa-arrow-up-right-dots text-3xl opacity-80"></i>
+                        <span class="text-xs font-mono opacity-50">FINANCE</span>
+                    </div>
+                    <h3 class="text-4xl font-bold uppercase tracking-tighter mb-4">SIP Wealth Hub</h3>
+                    <p class="opacity-60 mb-10 text-sm leading-relaxed">Plan your financial freedom. Advanced compounding engine with inflation adjustment, tax-loss harvesting estimates, and custom step-up inputs.</p>
+                    <div class="flex gap-4">
+                        <span class="text-[10px] border border-current px-2 py-1 font-bold italic">WEALTH PLANNING</span>
+                        <span class="text-[10px] border border-current px-2 py-1 font-bold italic">v2.1</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="social" class="mb-32">
+            <div class="flex items-baseline gap-4 mb-16">
+                <h2 class="text-4xl font-black uppercase tracking-tighter italic">/ 02 Social Strategy</h2>
+                <span class="text-xs opacity-30 uppercase font-bold tracking-widest">Growth & Metadata</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-10 border border-black/5 dark:border-white/10 rounded-tl-[60px]">
+                    <h4 class="font-bold uppercase mb-6 flex items-center gap-2">
+                        <i class="fas fa-hashtag text-xs"></i> SEO Content
+                    </h4>
+                    <p class="text-sm opacity-50 mb-8 leading-relaxed italic">"Social content isn't just about posting; it's about being discovered."</p>
+                    <p class="text-sm opacity-60 mb-10">Our tool suite includes advanced metadata generators to ensure your content ranks #1 on search engines and social feeds alike.</p>
+                    <span class="text-[10px] font-bold opacity-30 uppercase tracking-widest">Learning Blog...</span>
+                </div>
                 
-                <a href="bond-calc.html" class="group border border-black dark:border-white p-8 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
-                    <div class="flex justify-between items-start mb-12">
-                        <i class="fas fa-arrow-right -rotate-45 text-2xl group-hover:rotate-0 transition-transform"></i>
-                        <span class="text-xs font-mono">01</span>
-                    </div>
-                    <h3 class="text-3xl font-bold uppercase tracking-tighter">Bond Calculator</h3>
-                    <p class="mt-4 opacity-60 text-sm">Professional YTM and Price Valuation.</p>
-                </a>
-
-                <a href="sip-calc.html" class="group border border-black dark:border-white p-8 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
-                    <div class="flex justify-between items-start mb-12">
-                        <i class="fas fa-arrow-right -rotate-45 text-2xl group-hover:rotate-0 transition-transform"></i>
-                        <span class="text-xs font-mono">02</span>
-                    </div>
-                    <h3 class="text-3xl font-bold uppercase tracking-tighter">SIP Wealth</h3>
-                    <p class="mt-4 opacity-60 text-sm">Calculate future compounding returns.</p>
-                </a>
-
+                <div class="p-10 border border-black/5 dark:border-white/10 bg-black text-white dark:bg-white dark:text-black">
+                    <h4 class="font-bold uppercase mb-6 italic">Featured Article</h4>
+                    <p class="text-2xl font-bold tracking-tighter uppercase mb-6 leading-none">Why Speed Matters in Tools</p>
+                    <p class="text-[10px] opacity-70 mb-8 uppercase tracking-widest font-bold">Read Time: 3 MIN</p>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div>
-            <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10 opacity-50 italic">/ Dev Tools</h2>
-            <div class="border-t border-black/10 dark:border-white/10 pt-10">
-                <p class="text-sm opacity-40">JSON Formatter & Unit Converter coming soon...</p>
-            </div>
-        </div>
     </main>
 
-    <footer class="p-10 border-t border-black/10 dark:border-white/10 text-center">
-        <p class="text-[10px] font-bold uppercase tracking-widest opacity-30">ToolBloggy &copy; 2026. Designed for speed.</p>
+    <footer class="bg-black text-white pt-32 pb-10 px-6 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-20">
+            <div>
+                <div class="text-[15vw] font-black leading-none tracking-tighter uppercase opacity-10 absolute -left-4 bottom-0 select-none">TECHBLOGGY</div>
+                <div class="text-3xl font-bold tracking-tighter uppercase mb-6 relative z-10">TechBloggy Hub.</div>
+                <p class="text-xs opacity-40 max-w-[200px] leading-relaxed uppercase tracking-widest relative z-10">Building the most precise utility layer for the modern web creator.</p>
+            </div>
+            
+            <div class="flex gap-20 text-[10px] font-bold uppercase tracking-[0.3em] relative z-10">
+                <div class="flex flex-col gap-4">
+                    <span class="opacity-30 italic">Navigation</span>
+                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="#" class="hover:underline">Documentation</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="opacity-30 italic">Connect</span>
+                    <a href="#" class="hover:underline">GitHub</a>
+                    <a href="#" class="hover:underline">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-32 pt-10 border-t border-white/10 text-[10px] opacity-20 text-center tracking-[0.5em] font-bold">
+            © 2026 TECHBLOGGY / ALL SYSTEMS OPERATIONAL
+        </div>
     </footer>
 
 </body>
