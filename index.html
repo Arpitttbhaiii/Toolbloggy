@@ -3,83 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toolbloggy| All-in-One Utility</title>
+    <title>TOOLBLOGGY | Minimalist Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#000000',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
 
-    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-blue-600">Toolbloggy</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Finance</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Dev Tools</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Unit Converter</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Contact</button>
-                </div>
+    <nav class="border-b border-black/10 dark:border-white/10 sticky top-0 bg-white/80 dark:bg-black/80 backdrop-blur-md z-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-xl font-black tracking-tighter uppercase">
+                Tool<span class="bg-black text-white dark:bg-white dark:text-black px-1">Bloggy</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <button class="text-sm font-bold uppercase tracking-widest hidden md:block">Menu</button>
+                
+                <button onclick="document.documentElement.classList.toggle('dark')" class="w-10 h-10 flex items-center justify-center border border-black dark:border-white rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                    <i class="fas fa-circle text-[10px]"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <header class="bg-blue-600 py-16 px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Har Calculation Ka Solution</h1>
-        <p class="text-blue-100 text-lg max-w-2xl mx-auto">Finance se lekar Development tak, saare zaroori tools ek hi jagah par.</p>
-        <div class="mt-8 max-w-xl mx-auto relative">
-            <input type="text" placeholder="Search for a tool (e.g. Bond Calculator)..." class="w-full px-6 py-4 rounded-full shadow-xl focus:outline-none text-gray-800">
-        </div>
+    <header class="py-24 px-6 max-w-6xl mx-auto">
+        <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase mb-6">
+            Pure <br> Utility.
+        </h1>
+        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-md border-l-4 border-black dark:border-white pl-4">
+            Advanced financial and development tools. No distractions, just performance.
+        </p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-12">
-        <h2 class="text-2xl font-bold mb-8 flex items-center">
-            <i class="fas fa-th-large mr-3 text-blue-600"></i> Popular Tools
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Bond Price & YTM</h3>
-                <p class="text-gray-500 text-sm mb-4">Calculate Bond Price, Yield to Maturity (YTM), and Convexity with precision.</p>
-                <a href="bond-calc.html" class="inline-flex items-center text-blue-600 font-bold hover:text-blue-800">
-                    Open Tool <i class="fas fa-arrow-right ml-2 text-sm"></i>
+    <main class="max-w-6xl mx-auto px-6 pb-32">
+        <div class="mb-20">
+            <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10 opacity-50 italic">/ Finance Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <a href="bond-calc.html" class="group border border-black dark:border-white p-8 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <i class="fas fa-arrow-right -rotate-45 text-2xl group-hover:rotate-0 transition-transform"></i>
+                        <span class="text-xs font-mono">01</span>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase tracking-tighter">Bond Calculator</h3>
+                    <p class="mt-4 opacity-60 text-sm">Professional YTM and Price Valuation.</p>
                 </a>
-            </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">SIP Calculator</h3>
-                <p class="text-gray-500 text-sm mb-4">Plan your future wealth with step-up SIP and mutual fund returns.</p>
-                <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">Coming Soon</span>
-            </div>
+                <a href="sip-calc.html" class="group border border-black dark:border-white p-8 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <i class="fas fa-arrow-right -rotate-45 text-2xl group-hover:rotate-0 transition-transform"></i>
+                        <span class="text-xs font-mono">02</span>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase tracking-tighter">SIP Wealth</h3>
+                    <p class="mt-4 opacity-60 text-sm">Calculate future compounding returns.</p>
+                </a>
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">JSON Formatter</h3>
-                <p class="text-gray-500 text-sm mb-4">Clean, beautify and validate your JSON data instantly.</p>
-                <span class="text-xs font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">Coming Soon</span>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10 opacity-50 italic">/ Dev Tools</h2>
+            <div class="border-t border-black/10 dark:border-white/10 pt-10">
+                <p class="text-sm opacity-40">JSON Formatter & Unit Converter coming soon...</p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>&copy; 2026 Toolbloggy. All rights reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
-            </div>
-        </div>
+    <footer class="p-10 border-t border-black/10 dark:border-white/10 text-center">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-30">ToolBloggy &copy; 2026. Designed for speed.</p>
     </footer>
 
 </body>
