@@ -3,109 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBloggy — The Minimalist Utility</title>
+    <title>TechBloggy — Discover Tools & Tech Guides</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { brand: '#000' } } }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
-        body { font-family: 'Outfit', sans-serif; }
-        .tool-card { transition: all 0.2s ease-in-out; }
-        .tool-card:hover { border-color: black; }
-        .dark .tool-card:hover { border-color: white; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .tool-card:hover { transform: translateY(-5px); border-color: #000; }
     </style>
 </head>
-<body class="bg-[#fafafa] dark:bg-[#0a0a0a] text-black dark:text-white transition-colors duration-500">
+<body class="bg-[#fafafa] text-black transition-all">
 
-    <nav class="sticky top-0 z-50 border-b border-black/5 dark:border-white/5 bg-white/70 dark:bg-black/70 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="text-xl font-bold tracking-tight uppercase italic text-black dark:text-white">Tech<span class="font-light">Bloggy</span></div>
-            
-            <div class="hidden md:flex items-center bg-gray-100 dark:bg-white/5 px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10 w-64 focus-within:w-80 transition-all">
-                <i class="fa-solid fa-magnifying-glass text-[10px] opacity-40"></i>
-                <input type="text" placeholder="Search tools..." class="bg-transparent border-none text-xs focus:ring-0 w-full ml-2 outline-none">
+    <nav class="sticky top-0 z-50 border-b border-black/5 glass">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="text-xl font-bold tracking-tighter uppercase">Tech<span class="font-light">Bloggy</span></div>
+            <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest opacity-60">
+                <a href="#" class="hover:opacity-100">Home</a>
+                <a href="#tools" class="hover:opacity-100">Tools</a>
+                <a href="#blog" class="hover:opacity-100">Blog</a>
+                <a href="#" class="hover:opacity-100">About</a>
             </div>
-
             <div class="flex items-center gap-4">
-                <button onclick="document.documentElement.classList.toggle('dark')" class="w-8 h-8 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
-                    <i class="fa-solid fa-circle-half-stroke text-xs"></i>
-                </button>
+                <i class="fa-solid fa-magnifying-glass opacity-50 cursor-pointer"></i>
+                <button class="bg-black text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition-all">Join Hub</button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <header class="mb-12">
-            <h1 class="text-4xl font-extrabold tracking-tighter uppercase mb-2">Tech Utility <br> Dashboard.</h1>
-            <p class="text-[10px] text-gray-400 uppercase tracking-[0.3em]">Precision Tools for Creators & Analysts</p>
-        </header>
+    <section class="pt-24 pb-20 px-6 text-center max-w-5xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            DISCOVER USEFUL ONLINE <span class="text-gray-400 italic">TOOLS & TECH GUIDES</span>
+        </h1>
+        <p class="text-lg opacity-50 mb-10 max-w-2xl mx-auto leading-relaxed">
+            The ultimate ecosystem for creators. High-performance financial models, AI utilities, and in-depth technology articles.
+        </p>
+        
+        <div class="relative max-w-xl mx-auto mb-12">
+            <input type="text" placeholder="Search 100+ tools or articles..." class="w-full bg-white border border-black/10 px-6 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black shadow-sm">
+            <button class="absolute right-3 top-3 bg-black text-white px-4 py-1.5 rounded-xl text-xs font-bold uppercase">Search</button>
+        </div>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-2 mb-8 border-b border-black/5 dark:border-white/5 pb-2">
-                <h2 class="text-xs font-bold uppercase tracking-widest">/ Finance Tools</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#tools" class="px-8 py-3 bg-black text-white rounded-full font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform">Explore Tools</a>
+            <a href="#blog" class="px-8 py-3 border border-black/10 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all">Read Blog</a>
+        </div>
+    </section>
+
+    <section class="py-12 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="flex flex-col items-center p-6 bg-white border border-black/5 rounded-2xl hover:border-black transition-all cursor-pointer group">
+                <i class="fa-solid fa-robot mb-3 opacity-40 group-hover:opacity-100"></i>
+                <span class="text-[10px] font-black uppercase tracking-tighter">AI Tools</span>
             </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                <a href="bond-calc.html" class="tool-card border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 p-6 rounded-xl hover:shadow-sm">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="w-10 h-10 bg-black text-white dark:bg-white dark:text-black rounded-lg flex items-center justify-center">
-                            <i class="fa-solid fa-vault"></i>
-                        </div>
-                        <span class="text-[9px] font-bold opacity-30">PRO</span>
+            <div class="flex flex-col items-center p-6 bg-white border border-black/5 rounded-2xl hover:border-black transition-all cursor-pointer group">
+                <i class="fa-solid fa-image mb-3 opacity-40 group-hover:opacity-100"></i>
+                <span class="text-[10px] font-black uppercase tracking-tighter">Image Tools</span>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-white border border-black/5 rounded-2xl hover:border-black transition-all cursor-pointer group">
+                <i class="fa-solid fa-magnifying-glass-chart mb-3 opacity-40 group-hover:opacity-100"></i>
+                <span class="text-[10px] font-black uppercase tracking-tighter">SEO Tools</span>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-white border border-black/5 rounded-2xl hover:border-black transition-all cursor-pointer group">
+                <i class="fa-solid fa-code mb-3 opacity-40 group-hover:opacity-100"></i>
+                <span class="text-[10px] font-black uppercase tracking-tighter">Dev Tools</span>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-white border border-black/5 rounded-2xl hover:border-black transition-all cursor-pointer group">
+                <i class="fa-solid fa-coins mb-3 opacity-40 group-hover:opacity-100"></i>
+                <span class="text-[10px] font-black uppercase tracking-tighter">Finance Tools</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-3xl font-bold uppercase tracking-tighter">Featured Tools</h2>
+                <p class="text-xs opacity-40 uppercase font-bold tracking-[0.2em] mt-2 italic">/ Handpicked for performance</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="tool-card bg-white p-8 rounded-3xl border border-black/5 transition-all group relative overflow-hidden">
+                <span class="text-[9px] font-bold py-1 px-2 bg-gray-100 rounded uppercase mb-4 inline-block">Finance</span>
+                <h3 class="text-2xl font-bold mb-3 uppercase tracking-tighter">Bond Pricing</h3>
+                <p class="text-sm opacity-50 mb-8 leading-relaxed">Institutional grade YTM and valuation calculator for fixed income assets.</p>
+                <a href="bond-calc.html" class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">Open Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="tool-card bg-white p-8 rounded-3xl border border-black/5 transition-all group">
+                <span class="text-[9px] font-bold py-1 px-2 bg-gray-100 rounded uppercase mb-4 inline-block">AI</span>
+                <h3 class="text-2xl font-bold mb-3 uppercase tracking-tighter">AI Blog Writer</h3>
+                <p class="text-sm opacity-50 mb-8 leading-relaxed">Generate SEO-optimized articles using advanced GPT models in seconds.</p>
+                <button class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">Open Tool <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="tool-card bg-white p-8 rounded-3xl border border-black/5 transition-all group">
+                <span class="text-[9px] font-bold py-1 px-2 bg-gray-100 rounded uppercase mb-4 inline-block">Dev</span>
+                <h3 class="text-2xl font-bold mb-3 uppercase tracking-tighter">JSON Formatter</h3>
+                <p class="text-sm opacity-50 mb-8 leading-relaxed">Clean, validate, and minify your JSON code with one click.</p>
+                <button class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">Open Tool <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-20 bg-black text-white rounded-[50px] mx-4">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold uppercase tracking-tighter mb-12 italic">Latest Insights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group cursor-pointer">
+                    <div class="aspect-video bg-gray-900 border border-white/10 rounded-3xl mb-6 overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-microchip text-4xl opacity-20"></i>
                     </div>
-                    <h3 class="font-bold text-lg uppercase tracking-tight mb-1">Bond Calculator</h3>
-                    <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Advanced YTM & Price Valuation with professional inputs.</p>
-                </a>
-
-                <a href="sip-calc.html" class="tool-card border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 p-6 rounded-xl hover:shadow-sm">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="w-10 h-10 bg-black text-white dark:bg-white dark:text-black rounded-lg flex items-center justify-center">
-                            <i class="fa-solid fa-chart-pie"></i>
-                        </div>
-                        <span class="text-[9px] font-bold opacity-30">FREE</span>
+                    <div class="flex gap-4 mb-4 text-[10px] font-bold opacity-50 uppercase tracking-widest">
+                        <span>MAR 05, 2026</span> • <span>Technology</span>
                     </div>
-                    <h3 class="font-bold text-lg uppercase tracking-tight mb-1">SIP Wealth</h3>
-                    <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Wealth compounding engine with inflation support.</p>
-                </a>
-            </div>
-        </section>
-
-        <section class="mb-16 opacity-50">
-            <div class="flex items-center gap-2 mb-8 border-b border-black/5 dark:border-white/5 pb-2">
-                <h2 class="text-xs font-bold uppercase tracking-widest">/ Social Media Tools</h2>
-            </div>
-            <div class="p-12 border border-dashed border-black/10 dark:border-white/10 rounded-xl text-center">
-                <p class="text-[10px] font-bold uppercase tracking-widest">Keyword Generator & SEO Tools Coming Soon</p>
-            </div>
-        </section>
-
-        <section class="pt-12 border-t border-black/5 dark:border-white/5">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="p-8 bg-black text-white dark:bg-white dark:text-black rounded-2xl">
-                    <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4 italic">Why TechBloggy?</h4>
-                    <p class="text-xs leading-loose opacity-70">Humne in tools ko isliye banaya hai taaki aapko bina kisi ads aur faltu design ke seedhe calculations mil sakein. Hamare algorithm 2026 ke updated financial rates par kaam karte hain.</p>
+                    <h3 class="text-3xl font-bold leading-tight group-hover:underline">HOW ARTIFICIAL INTELLIGENCE IS RESHAPING MODERN WEB UTILITIES</h3>
                 </div>
-                <div class="flex flex-col justify-center gap-4">
-                    <div class="flex items-center justify-between text-xs font-bold border-b border-black/5 pb-2">
-                        <span>LATEST UPDATE</span>
-                        <span class="opacity-40">v2.1.0 (MAR 2026)</span>
+                <div class="group cursor-pointer">
+                    <div class="aspect-video bg-gray-900 border border-white/10 rounded-3xl mb-6 overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-4xl opacity-20"></i>
                     </div>
-                    <div class="flex items-center justify-between text-xs font-bold border-b border-black/5 pb-2">
-                        <span>SYSTEM STATUS</span>
-                        <span class="text-green-500">OPERATIONAL</span>
+                    <div class="flex gap-4 mb-4 text-[10px] font-bold opacity-50 uppercase tracking-widest">
+                        <span>MAR 01, 2026</span> • <span>Finance</span>
                     </div>
+                    <h3 class="text-3xl font-bold leading-tight group-hover:underline">UNDERSTANDING BOND YIELDS IN A VOLATILE MARKET</h3>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="py-10 text-center">
-        <p class="text-[9px] font-bold tracking-[0.5em] opacity-30 uppercase">© 2026 TechBloggy Hub</p>
+    <footer class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-2">
+                <div class="text-2xl font-bold tracking-tighter uppercase mb-6">TechBloggy</div>
+                <p class="text-sm opacity-40 max-w-sm leading-relaxed">The premier destination for professional digital utilities and tech education. Built for those who build the future.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-[10px] uppercase tracking-widest mb-6 opacity-30">Explore</h4>
+                <ul class="space-y-3 text-sm font-medium">
+                    <li><a href="#" class="hover:underline">All Tools</a></li>
+                    <li><a href="#" class="hover:underline">Blog Archive</a></li>
+                    <li><a href="#" class="hover:underline">Newsletter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-[10px] uppercase tracking-widest mb-6 opacity-30">Socials</h4>
+                <div class="flex gap-6 text-xl opacity-50">
+                    <i class="fa-brands fa-twitter cursor-pointer hover:opacity-100 transition-opacity"></i>
+                    <i class="fa-brands fa-github cursor-pointer hover:opacity-100 transition-opacity"></i>
+                    <i class="fa-brands fa-linkedin cursor-pointer hover:opacity-100 transition-opacity"></i>
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-black/5 text-[9px] font-bold opacity-30 uppercase tracking-[0.5em] text-center">
+            © 2026 TechBloggy / All Systems Operational
+        </div>
     </footer>
 
 </body>
